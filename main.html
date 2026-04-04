@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AM 4:00の境界線 - Home</title>
+    <style>
+        body {
+            background-color: #0b0e14;
+            color: #d1d1d1;
+            font-family: "MS P明朝", "Yu Mincho", serif;
+            margin: 0;
+            display: flex;
+            min-height: 100vh;
+            letter-spacing: 0.1em;
+        }
+
+        /* 左側のメニューカラム */
+        nav {
+            width: 220px;
+            border-right: 1px solid #2c313c;
+            padding: 50px 25px;
+            position: fixed;
+            height: 100vh;
+            background-color: rgba(11, 14, 20, 0.95);
+        }
+
+        nav h2 {
+            font-size: 0.85rem;
+            color: #88aaff;
+            letter-spacing: 0.3em;
+            margin-bottom: 40px;
+            font-weight: normal;
+        }
+
+        .menu-group {
+            margin-bottom: 40px;
+        }
+
+        .menu-title {
+            display: block;
+            font-size: 0.75rem;
+            color: #555;
+            margin-bottom: 15px;
+            border-bottom: 1px solid #222;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        nav li {
+            margin-bottom: 12px;
+        }
+
+        nav a {
+            color: #999;
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: 0.4s;
+            display: block;
+        }
+
+        nav a:hover {
+            color: #fff;
+            padding-left: 8px;
+            text-shadow: 0 0 10px rgba(136, 170, 255, 0.5);
+        }
+
+        /* 現在のページを示すスタイル（Homeを少し明るく） */
+        .current-page {
+            color: #ececec;
+            pointer-events: none; /* 自分自身のリンクはクリック不可に */
+            border-left: 1px solid #88aaff;
+            padding-left: 5px;
+        }
+
+        /* 右側のメインエリア */
+        main {
+            margin-left: 270px;
+            padding: 80px 60px;
+            flex-grow: 1;
+            max-width: 750px;
+        }
+
+        h3 {
+            font-weight: normal;
+            font-size: 1.2rem;
+            color: #ececec;
+            margin-bottom: 40px;
+            padding-left: 10px;
+            border-left: 2px solid #88aaff;
+        }
+
+        .status-box {
+            font-size: 0.8rem;
+            color: #666;
+            margin-bottom: 60px;
+            line-height: 1.8;
+            padding: 20px;
+            background-color: rgba(255,255,255,0.02);
+            border: 1px solid #1a1e26;
+        }
+
+        .content-section {
+            margin-bottom: 80px;
+            line-height: 1.9;
+        }
+
+        .date {
+            color: #88aaff;
+            font-size: 0.85rem;
+            margin-right: 15px;
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <h2>AM 4:00の境界線</h2>
+
+        <div class="menu-group">
+            <span class="menu-title">Information</span>
+            <ul>
+                <li><a href="main.html" class="current-page">Home (拠点)</a></li>
+                <li><a href="about.html">About (標本)</a></li>
+            </ul>
+        </div>
+
+        <div class="menu-group">
+            <span class="menu-title">Fragments</span>
+            <ul>
+                <li><a href="monologue.html">Monologue (独白)</a></li>
+                <li><a href="column.html">Column (断片)</a></li>
+                <li><a href="gallery.html">Gallery (残像)</a></li>
+            </ul>
+        </div>
+
+        <div class="menu-group">
+            <span class="menu-title">Connection</span>
+            <ul>
+                <li><a href="links.html">Links (共鳴)</a></li>
+                <li><a href="index.html" style="color:#444; margin-top: 20px;">Exit</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <div class="status-box" id="counter-display">
+            You are the 000001st traveler.<br>
+            2026.04.04 : サイト開設
+        </div>
+
+        <section class="content-section">
+            <h3>Update Log</h3>
+            <p><span class="date">2026.04.04</span> サイト開設 / 標本(About)を公開</p>
+            <p><span class="date">2026.04.05</span> カウンターをこっそり実装</p>
+        </section>
+    </main>
+
+    <script>
+        window.onload = function() {
+            const counterElement = document.getElementById('counter-display');
+            let count = localStorage.getItem('gekki_visit_count');
+            
+            if (!count) {
+                count = 1;
+            } else {
+                // ページを開くたびに1〜2ずつランダムに増える
+                count = parseInt(count) + Math.floor(Math.random() * 2) + 1;
+            }
+            
+            localStorage.setItem('gekki_visit_count', count);
+
+            // 6桁のゼロ埋め表示
+            const formattedCount = String(count).padStart(6, '0');
+            counterElement.innerHTML = `You are the ${formattedCount}st traveler.<br>2026.04.04 : サイト開設`;
+        };
+    </script>
+
+</body>
+</html>
