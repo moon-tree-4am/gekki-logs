@@ -148,8 +148,7 @@
 
     <main>
         <div class="status-box" id="counter-display">
-            You are the 000001st traveler.<br>
-            2026.04.04 サイト開設
+            You are the 000001st traveler.
         </div>
 
         <section class="content-section">
@@ -170,15 +169,14 @@
             // 2. 経過時間（秒）を算出
             const secondsPassed = Math.floor((now - startDate) / 1000);
             
-            // 3. 超低速カウントロジック
-            // 21600秒（＝6時間）に1人増えるペースに設定
-            // 1日（86400秒）で ちょうど 4人 増える計算です
+            // 3. 超低速カウントロジック（約6時間に1人ペース）
+            // 1日(86400秒)で4人増える設定
             let baseCount = Math.floor(secondsPassed / 21600); 
             
-            // 4. 僅かな揺らぎ（10%の確率で+1される、あるいはリロードで1秒待てば変わる可能性）
+            // 4. 僅かな揺らぎ（10分の1の確率で+1）
             let flicker = (now % 10 == 0) ? 1 : 0; 
             
-            // 初期値（開設時の最初の数人）
+            // 初期値（開設直後の旅人数）
             let initialValue = 2; 
             
             let finalCount = initialValue + baseCount + flicker;
@@ -186,8 +184,8 @@
             // 5. 表示形式（6桁ゼロ埋め）
             const formattedCount = String(finalCount).padStart(6, '0');
             
-            // HTML書き換え（「:」を消して、より静かな表記へ）
-            counterElement.innerHTML = `You are the ${formattedCount}st traveler.<br>2026.04.04 サイト開設`;
+            // 【修正ポイント】カウンターの数字のみを表示するようにしました
+            counterElement.innerHTML = `You are the ${formattedCount}st traveler.`;
         };
     </script>
 
