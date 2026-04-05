@@ -69,10 +69,9 @@
             text-shadow: 0 0 10px rgba(136, 170, 255, 0.5);
         }
 
-        /* 現在のページを示すスタイル（Homeを少し明るく） */
         .current-page {
             color: #ececec;
-            pointer-events: none; /* 自分自身のリンクはクリック不可に */
+            pointer-events: none;
             border-left: 1px solid #88aaff;
             padding-left: 5px;
         }
@@ -142,7 +141,7 @@
             <span class="menu-title">Connection</span>
             <ul>
                 <li><a href="links.html">Links (共鳴)</a></li>
-               <li><a href="https://www.google.com" style="color:#444; margin-top: 20px;">Exit</a></li>
+                <a href="https://www.google.com" style="color:#444; margin-top: 20px; display: block; text-decoration: none; font-size: 0.8rem;">Exit</a>
             </ul>
         </div>
     </nav>
@@ -150,12 +149,12 @@
     <main>
         <div class="status-box" id="counter-display">
             You are the 000001st traveler.<br>
-            2026.04.04 : サイト開設
+            2026.04.04 サイト開設
         </div>
 
         <section class="content-section">
             <h3>Update Log</h3>
-            <p><span class="date">2026.04.04</span> サイト開設 / 標本(About)を公開</p>
+            <p><span class="date">2026.04.04</span> サイト開設</p>
             <p><span class="date">2026.04.05</span> カウンターをこっそり実装</p>
         </section>
     </main>
@@ -163,20 +162,32 @@
     <script>
         window.onload = function() {
             const counterElement = document.getElementById('counter-display');
-            let count = localStorage.getItem('gekki_visit_count');
             
-            if (!count) {
-                count = 1;
-            } else {
-                // ページを開くたびに1〜2ずつランダムに増える
-                count = parseInt(count) + Math.floor(Math.random() * 2) + 1;
-            }
+            // 1. 起点の日時
+            const startDate = new Date('2026-04-04T04:00:00').getTime();
+            const now = new Date().getTime();
             
-            localStorage.setItem('gekki_visit_count', count);
+            // 2. 経過時間（秒）を算出
+            const secondsPassed = Math.floor((now - startDate) / 1000);
+            
+            // 3. 超低速カウントロジック
+            // 21600秒（＝6時間）に1人増えるペースに設定
+            // 1日（86400秒）で ちょうど 4人 増える計算です
+            let baseCount = Math.floor(secondsPassed / 21600); 
+            
+            // 4. 僅かな揺らぎ（10%の確率で+1される、あるいはリロードで1秒待てば変わる可能性）
+            let flicker = (now % 10 == 0) ? 1 : 0; 
+            
+            // 初期値（開設時の最初の数人）
+            let initialValue = 2; 
+            
+            let finalCount = initialValue + baseCount + flicker;
 
-            // 6桁のゼロ埋め表示
-            const formattedCount = String(count).padStart(6, '0');
-            counterElement.innerHTML = `You are the ${formattedCount}st traveler.<br>2026.04.04 : サイト開設`;
+            // 5. 表示形式（6桁ゼロ埋め）
+            const formattedCount = String(finalCount).padStart(6, '0');
+            
+            // HTML書き換え（「:」を消して、より静かな表記へ）
+            counterElement.innerHTML = `You are the ${formattedCount}st traveler.<br>2026.04.04 サイト開設`;
         };
     </script>
 
