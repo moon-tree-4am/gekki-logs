@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Links - AM 4:00の境界線</title>
+    <style>
+        /* ベース設定 */
+        body {
+            background-color: #0b0e14;
+            color: #d1d1d1;
+            font-family: "MS P明朝", "Yu Mincho", serif;
+            margin: 0;
+            display: flex;
+            min-height: 100vh;
+            letter-spacing: 0.1em;
+        }
+
+        /* 左側のメニューカラム */
+        nav {
+            width: 220px;
+            border-right: 1px solid #2c313c;
+            padding: 50px 25px;
+            position: fixed;
+            height: 100vh;
+            background-color: rgba(11, 14, 20, 0.95);
+        }
+
+        nav h2 {
+            font-size: 0.85rem;
+            color: #88aaff;
+            letter-spacing: 0.3em;
+            margin-bottom: 40px;
+            font-weight: normal;
+        }
+
+        .menu-group { margin-bottom: 40px; }
+        .menu-title {
+            display: block;
+            font-size: 0.75rem;
+            color: #555;
+            margin-bottom: 15px;
+            border-bottom: 1px solid #222;
+        }
+
+        nav ul { list-style: none; padding: 0; margin: 0; }
+        nav li { margin-bottom: 12px; }
+        nav a {
+            color: #999;
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: 0.4s;
+            display: block;
+        }
+
+        nav a:hover {
+            color: #fff;
+            padding-left: 8px;
+            text-shadow: 0 0 10px rgba(136, 170, 255, 0.5);
+        }
+
+        .current-page {
+            color: #ececec;
+            pointer-events: none;
+            border-left: 1px solid #88aaff;
+            padding-left: 5px;
+        }
+
+        /* 右側のメインエリア */
+        main {
+            margin-left: 270px;
+            padding: 80px 60px 200px; /* 下部に余白を持たせ、署名なしの静寂を強調 */
+            flex-grow: 1;
+            max-width: 750px;
+        }
+
+        h3 {
+            font-weight: normal;
+            font-size: 1.2rem;
+            color: #ececec;
+            margin-bottom: 40px;
+            padding-left: 10px;
+            border-left: 2px solid #88aaff;
+        }
+
+        .page-note {
+            font-size: 0.8rem;
+            color: #666;
+            margin-bottom: 60px;
+            line-height: 1.8;
+            padding: 20px;
+            background-color: rgba(255,255,255,0.02);
+            border-left: 1px solid #1a2a40;
+        }
+
+        .section-tag {
+            margin: 80px 0 30px;
+            font-size: 0.75rem;
+            letter-spacing: 0.3em;
+            border-bottom: 1px solid #222;
+            padding-bottom: 10px;
+        }
+        .tag-downer { color: #5577aa; }
+        .tag-upper { color: #aa5555; }
+        .tag-impulse { color: #dd8844; }
+        .tag-library { color: #667788; }
+        .tag-ent { color: #aa8855; }
+
+        .column-list { display: flex; flex-direction: column; gap: 25px; }
+        .column-link { text-decoration: none; color: #d1d1d1; display: block; transition: 0.4s; }
+        .column-date { font-size: 0.65rem; color: #444; display: block; margin-bottom: 5px; }
+        .column-title { font-size: 0.95rem; border-left: 1px solid #222; padding-left: 15px; display: block; }
+        
+        .column-link:hover .column-title { 
+            border-left: 1px solid #88aaff; 
+            color: #fff; 
+            padding-left: 20px; 
+        }
+
+        .beyond-box {
+            margin-top: 150px;
+            padding: 50px;
+            border: 1px solid #1a2a40;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <h2>AM 4:00の境界線</h2>
+        <div class="menu-group">
+            <span class="menu-title">Information</span>
+            <ul>
+                <li><a href="main.html">Home (拠点)</a></li>
+                <li><a href="about.html">About (標本)</a></li>
+            </ul>
+        </div>
+        <div class="menu-group">
+            <span class="menu-title">Fragments</span>
+            <ul>
+                <li><a href="monologue.html">Monologue (独白)</a></li>
+                <li><a href="column.html">Column (断片)</a></li>
+                <li><a href="gallery.html">Gallery (残像)</a></li>
+            </ul>
+        </div>
+        <div class="menu-group">
+            <span class="menu-title">Connection</span>
+            <ul>
+                <li><a href="links.html" class="current-page">Links (共鳴)</a></li>
+                <a href="https://www.google.com" style="color:#444; margin-top: 20px; display: block; text-decoration: none; font-size: 0.8rem;">Exit</a>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <h3>Links / 共鳴</h3>
+        
+        <p class="page-note">
+            深夜4時、境界線の上で耳に馴染み、血肉となった断片たち。
+        </p>
+
+        <div class="section-tag tag-downer">Downer - 沈殿する意識</div>
+        <div class="column-list">
+            <a href="https://www.youtube.com/watch?v=ArqagB9P1Qs" class="column-link" target="_blank">
+                <span class="column-date">Music</span>
+                <span class="column-title">息をするだけ / MIMI feat.可不</span>
+            </a>
+            <a href="https://www.youtube.com/watch?v=91R2hdV_-aQ" class="column-link" target="_blank">
+                <span class="column-date">Music</span>
+                <span class="column-title">生きる / 水野あつ feat.可不</span>
+            </a>
+        </div>
+
+        <div class="section-tag tag-upper">Upper - 加速する思考</div>
+        <div class="column-list">
+            <a href="https://www.youtube.com/watch?v=0HYm60Mjm0k" class="column-link" target="_blank">
+                <span class="column-date">Music</span>
+                <span class="column-title">命に嫌われている。 / カンザキイオリ</span>
+            </a>
+            <a href="https://www.youtube.com/watch?v=19y8YTbvri8" class="column-link" target="_blank">
+                <span class="column-date">Chaos</span>
+                <span class="column-title">メズマライザー / サツキ</span>
+            </a>
+        </div>
+
+        <div class="section-tag tag-impulse">Impulse - 衝動</div>
+        <div class="column-list">
+            <a href="https://www.youtube.com/watch?v=8XpiTsxBIvg" class="column-link" target="_blank">
+                <span class="column-date">Music</span>
+                <span class="column-title">The Beast. / スペクタクルP feat.可不</span>
+            </a>
+        </div>
+
+        <div class="section-tag tag-library">Library - 思考の浸食</div>
+        <div class="column-list">
+            <div class="column-link">
+                <span class="column-date">Text</span>
+                <span class="column-title">世界一やさしい依存症入門 / 松本俊彦</span>
+            </div>
+            <div class="column-link">
+                <span class="column-date">Essay</span>
+                <span class="column-title">持たない幸福論 / pha</span>
+            </div>
+            <div class="column-link">
+                <span class="column-date">Diary</span>
+                <span class="column-title">卒業式まで死にません / 南条あや</span>
+            </div>
+        </div>
+
+        <div class="section-tag tag-ent">Entertainment - 遊戯</div>
+        <div class="column-list">
+            <div class="column-link">
+                <span class="column-date">Alchemy</span>
+                <span class="column-title">鋼の錬金術師 / 荒川弘</span>
+            </div>
+            <div class="column-link">
+                <span class="column-date">Evolution</span>
+                <span class="column-title">魔人探偵脳噛ネウロ / 松井優征</span>
+            </div>
+            <div class="column-link">
+                <span class="column-date">Hell</span>
+                <span class="column-title">Hazbin Hotel / VivziePop</span>
+            </div>
+        </div>
+
+        <div class="beyond-box">
+            <a href="https://www.youtube.com/watch?v=Y4nEEZwckuU" class="column-link" target="_blank">
+                <span class="column-date" style="color: #88aaff;">Light</span>
+                <span class="column-title" style="border: none; padding: 0; font-size: 1.1rem;">群青 / YOASOBI</span>
+            </a>
+        </div>
+
+    </main>
+
+</body>
+</html>
