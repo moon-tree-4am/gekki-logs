@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="noindex">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Column - AM 4:00の境界線</title>
+    <style>
+    /* スムーズスクロールとスクロールバーの固定設定 */
+        html {
+            scroll-behavior: smooth;
+            overflow-y: scroll; /* 常にスクロール領域を確保 */
+            scrollbar-gutter: stable; /* バーが出てもコンテンツを動かさない */
+        }
+
+        /* スクロールバー自体のデザイン（浮いて見えないように闇に馴染ませる） */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0b0e14; /* サイトの背景色と同じ */
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #2c313c; /* 境界線に近い色 */
+            border-radius: 10px;
+            border: 2px solid #0b0e14; /* 背景色で隙間を作って細く見せる */
+        }
+
+        /* 全体の設定：静かな夜の空気感 */
+        body {
+            background-color: #0b0e14;
+            color: #d1d1d1;
+            font-family: "MS P明朝", "Yu Mincho", serif;
+            margin: 0;
+            display: flex;
+            min-height: 100vh;
+            letter-spacing: 0.1em;
+            line-height: 1.8;
+        }
+
+        /* サイドナビゲーション（左固定） */
+        nav {
+            width: 220px;
+            border-right: 1px solid #2c313c;
+            padding: 50px 25px;
+            position: fixed;
+            height: 100vh;
+            background-color: rgba(11, 14, 20, 0.95);
+            z-index: 100;
+            box-sizing: border-box;
+            overflow-y: auto;
+        }
+
+        /* menu.js用のスタイル */
+        nav h2 {
+            font-size: 0.85rem;
+            color: #88aaff;
+            letter-spacing: 0.3em;
+            margin-bottom: 40px;
+            font-weight: normal;
+        }
+
+        .menu-group {
+            margin-bottom: 40px;
+        }
+
+        .menu-title {
+            display: block;
+            font-size: 0.75rem;
+            color: #555;
+            margin-bottom: 15px;
+            border-bottom: 1px solid #222;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        nav li {
+            margin-bottom: 12px;
+        }
+
+        nav a {
+            color: #999;
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: 0.4s;
+            display: block;
+        }
+
+        nav a:hover {
+            color: #fff;
+            padding-left: 8px;
+            text-shadow: 0 0 10px rgba(136, 170, 255, 0.5);
+        }
+
+        .current-page {
+            color: #ececec !important;
+            pointer-events: none;
+            border-left: 1px solid #88aaff;
+            padding-left: 5px;
+        }
+
+        /* メインコンテンツエリア */
+        main {
+            margin-left: 220px;
+            padding: 80px 60px;
+            flex-grow: 1;
+            max-width: 800px;
+            box-sizing: border-box;
+        }
+
+        h3 {
+            font-weight: normal;
+            font-size: 1.2rem;
+            color: #ececec;
+            margin-bottom: 50px;
+            padding-left: 10px;
+            border-left: 2px solid #88aaff;
+        }
+
+        /* カラムリスト（目次） */
+        .column-list {
+            margin-bottom: 100px;
+            border-top: 1px solid #1a1e26;
+        }
+
+        .column-link {
+            display: block;
+            padding: 20px 0;
+            border-bottom: 1px solid #1a1e26;
+            text-decoration: none;
+            color: #888;
+            transition: 0.3s;
+            font-size: 0.9rem;
+        }
+
+        .column-link:hover {
+            color: #88aaff;
+            background-color: rgba(255, 255, 255, 0.01);
+            padding-left: 10px;
+        }
+
+        .column-date {
+            font-size: 0.75rem;
+            color: #444;
+            margin-right: 20px;
+            font-family: sans-serif;
+        }
+
+        /* 記事本文 */
+        .column-content {
+            margin-top: 120px;
+        }
+
+        .column-title {
+            font-size: 1.15rem;
+            color: #ececec;
+            margin-bottom: 50px;
+            font-weight: normal;
+            letter-spacing: 0.2em;
+            border-bottom: 1px dotted #2c313c;
+            padding-bottom: 10px;
+            display: inline-block;
+        }
+
+        .column-body {
+            font-size: 0.95rem;
+            color: #b0b0b0;
+            text-align: justify;
+            white-space: pre-wrap;
+            line-height: 2.6;
+            letter-spacing: 0.08em;
+            opacity: 0.9;
+            padding: 0 10px;
+        }
+
+        /* 読了感向上のための段落間余白 */
+        .column-body p {
+            margin-bottom: 1.5em;
+        }
+
+        .column-footer {
+            margin-top: 100px;
+            padding-top: 20px;
+            border-top: 1px solid #1a1e26;
+            text-align: right;
+        }
+
+        .back-link {
+            font-size: 0.8rem;
+            color: #555;
+            text-decoration: none;
+        }
+
+        .back-link:hover {
+            color: #88aaff;
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav></nav>
+
+    <main>
+        <h3>Column - ① 黎明と混迷 -</h3>
+
+        <div class="column-list">
+            <a href="#c1-1" class="column-link"> <span class="column-date">#01</span>
+                 なぜ市販薬になったのか
+            </a>
+            <a href="#c1-2" class="column-link">
+                <span class="column-date">#02</span>
+                再燃、そして銀行での日々
+            </a>
+        </div>
+
+        <article id="c1-1" class="column-content">
+            <h4 class="column-title">#01 なぜ市販薬になったのか</h4>
+            <div class="column-body">別に最初はただしんどいなと思ってネットをふらふらしていた時だった。
+当時はガラケー向けサイトとか個人サイトとかが全盛期。
+たまたま当時の似た者同士のサイトや掲示板に入ったのがきっかけだった。
+似た人がいたのと当時に自分も心療内科に行ってみたいと思った。
+元々精神に不調をきたしていた頃だったから、このタイミングだと。
+
+しかしどこも未成年のみの受診は断る所ばかりで困ったものだった。
+すでに両親と離れて暮らしていたし距離を取りたかった。
+それに迷惑をかけたくない、ただの普通の高校生活をおくっていると思わせたかったのだ。
+
+そこからあちこちにかけまくった結果、一か所だけ保険証あればOKと言う所があった。
+ここだと思い通い始めた。
+
+しかし合わない。先生は高圧的で毎回圧迫面接を受けているような感覚。
+だんたんと薬をもらうだけにシフトしていった。
+
+ネットのそういうコミュニティの情報の共有は早い。
+ああ言えばこれをもらえるという、薬をもらえるマニュアルがあったのだ。
+その通りに演じたら実際にもらえたもんだから毎回せがった。
+
+今思えばなんて酷い病院なんだと思う。
+学生の演技を見破れない上に薬だけ出してすぐ終わるタイプだった。
+調子が良ければいかず、悪くなったら病院に行き薬をもらう。
+そして散財的に処方箋を乱用していた。
+
+しかし高校生の頃にこれを数年間繰り返しめんどくさくなってきた。
+嘘をつくのも、病院に行くのも。
+専門学生の頃には次第に行かなくなり、今度は市販薬を好むようになった。
+
+お金さえ払えば楽になる、これでめんどくさい儀式？を挟まなくて済むのだと安心したのもある。
+
+市販薬も手あたり次第に飲んだのではない。
+やはり精神的に病んでいるコミュニティでしんどいねと話をしていると入ってくるのだ。
+風邪薬や抗ヒスタミン薬をいろいろ試し、個人的に合ったのがＢだった。
+
+Ｂはとても人気だった。成分の少なさと安さ、コスパが良いと言ってしまっていい。
+自分も最初はおっかなびっくりだったが量を飲むコツさえ掴めば簡単だった。
+
+そのうちしんどい日から回数が増え日常的に飲むようになった。
+ちょうど専門学生卒業の年になり、勉強だけではなく卒業制作や就活もあった。
+ストレスから逃れる為に飲む、しかしその分だけ生活は破滅していった。
+
+朝イチで学校に着き、誰もいない教室で朝ごはんのようにヨーグルトのミニパックにざらりと入れ何を飲んでいるのか分からない物を胃に流しこんでいる感覚。
+そんな状況では何も手に着かないのが現実だった。
+あの頃の記憶はただ失敗している記憶しかない。
+何も上手くいかない、だから飲む、飲んでしまう。
+
+年明けになんとかギリギリ中途採用向けの所に決まり、4月から無職じゃなくて済む。
+卒業制作の作品は覚えていない。チームで何かを作った朧気な記憶はある。しかしそれ以外何も覚えてないのだ。
+
+ボロボロになりながら学校生活が終わり、これで市販薬とも卒業。そう思っていた・・・。</div>
+
+            <div class="column-footer">
+                <a href="#" class="back-link">top ▲</a>
+            </div>
+        </article>
+
+        <article id="c1-2" class="column-content">
+            <h4 class="column-title">#02 再燃、そして銀行での日々</h4>
+            <div class="column-body">学校を卒業したらあれだけ酷かったODもぱたりと止まった。
+それよりも新社会人になり仕事を覚えるのが精いっぱいだったからが第一だったと思う。
+
+初めて入った会社は半年ほどで辞めた。
+理由は夜勤であったことと業務内容だった。
+
+当時SNSの健全化の過渡期であり"ネット経由で出会うのはいけない"と言う考えが浸透してきた。
+そこでユーザーの個人間のメッセージを会社側で一回チェックし会ってから起こるトラブルを未然に防ぐのが仕事だった。
+
+しかし自分には分からなかった。
+明確に出た場合は分かるのだが、直球のメッセージはレアでだいたいは遠回しである。
+怪しいと思った物は全て上司に上げるシステムなのだが、分からないから投げる。
+そうしているうちに「自分で考えて判断してくれ。」と言われて困惑していた。
+そのうち1日に捌くノルマの導入があり未達成がずっと続いて、もう辞めようと思ってからは早かった。
+
+そのあとにまた半年ほど無職の期間があった。
+その頃にようやく心療内科（二か所目）でASD（当時だと広汎性発達障害）や二次障害で双極性障害2型を発症している事が分かり、精神福祉手帳や障害者年金の手続きがあった。
+NPO法人の支援団体と繋がりようやく支援が受けれるようになり、障害者職業センターで訓練を受けながら就活していた。
+活動はしているのではあるが、収入がなく減っていく貯金を見てどんどんストレスが溜まっていた。
+
+その時にまたODが再燃したのである。
+当時はBは安い所では1000円を切る安さで買える為、1本買いそれを1日でじわりじわり飲み食費を浮かす戦法で生きていた。
+発狂寸前であった。
+しかし言えない。心療内科にすら。
+「言ってはいけない、ばれてはいけない、誰にも。」という考えが強すぎて。
+
+貯金が底をつく頃、ようやく障害者雇用枠でとある銀行の裏方の事務員として就職が決まった。
+またそこでパタリと止まった。
+
+新しい環境で1から社会人をやるのは初めてだった。
+なにせ1か所目はインスタント社員並みにすぐに現場へ出されたのだから。
+周りは優しく上司も積極的だったし、ハローワーク経由で就職したためジョブコーチが間に入ってくれ調節してくれていた。
+
+しかしここでも参ってしまったのが現実だった。
+デジタル化の作業でアナログとデジタルのデータが合ってるか照合する仕事を任されたのだが、量が多すぎるのである。
+今までその銀行を利用した人、直近で使った人、全部を見なければいけない、究極の間違い探しであった。
+それを1人でやること。無理だった。
+約2年間ほど働いていたが、自分から根を上げてまた退職してしまった。
+
+そこから就労継続支援B型に移った。
+すぐ働けなかった。体調を崩しがちになったのと、仕事をする勇気を失ってしまった。
+体調もぼんやりとした物だった。なんとなく疲れやすい、だるい、頭痛、など。
+
+それにその作業所は発達障害と知的障害と精神疾患が対象だったのだが軽作業がメイン、もう内職と言っていいほどの物だ。
+どんどん自分が分からなくなっていった。この作業をしていった何の為になるのかと。
+
+そこからまた定期的にODをするようになってしまった。
+今度は数か月に一回、Bを1瓶飲む。
+ガス抜きだった。
+お酒や煙草は好みが合わない事や気管支が弱かったからやらなかった。
+貯金を切り崩し、障害者年金と合わせてギリギリの生活。
+
+実家には帰るつもりがなかった。
+実家は離島で小さな社会。今帰った所で障害者への理解や福祉を使う道は断たれてしまう。
+今住んでいる所でなんとかするしかない。
+
+生活保護まで視界には入ったが心療内科から働けるでしょと言われ、親からはそんなのを受けないで金銭的な支援はするから、と言われた。
+八方塞がりだった。本気で死のうと思いロープと脚立を荷物に入れふらふら彷徨っていたいたこともある。
+
+そんな自分が嫌になり、Bを飲む頻度も上がっていった。
+
+「もう無理やり働くしかない。体が壊れても、誰も金銭面では助けてくれない。」
+覚悟を決めて必死に就職活動をした。
+20代も終わりの頃。今までぬくぬくと生活して失ってしまった社会人の経験10年を取り戻したいという一心で。
+
+その頃に世界的な流行り病がやってきたのであった。
+            </div>
+
+            <div class="column-footer">
+                <a href="#" class="back-link">top ▲</a>
+            </div>
+        </article>
+    </main>
+
+    <script src="menu.js"></script>
+</body>
+
+</html>

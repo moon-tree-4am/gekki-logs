@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="noindex">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Column ② - AM 4:00の境界線</title>
+    <style>
+    /* スムーズスクロールとスクロールバーの固定設定 */
+        html {
+            scroll-behavior: smooth;
+            overflow-y: scroll; /* 常にスクロール領域を確保 */
+            scrollbar-gutter: stable; /* バーが出てもコンテンツを動かさない */
+        }
+
+        /* スクロールバー自体のデザイン（浮いて見えないように闇に馴染ませる） */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0b0e14; /* サイトの背景色と同じ */
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #2c313c; /* 境界線に近い色 */
+            border-radius: 10px;
+            border: 2px solid #0b0e14; /* 背景色で隙間を作って細く見せる */
+        }
+
+        /* 全体の設定：静かな夜の空気感 */
+        body {
+            background-color: #0b0e14;
+            color: #d1d1d1;
+            font-family: "MS P明朝", "Yu Mincho", serif;
+            margin: 0;
+            display: flex;
+            min-height: 100vh;
+            letter-spacing: 0.1em;
+            line-height: 1.8;
+        }
+
+        /* サイドナビゲーション（左固定） */
+        nav {
+            width: 220px;
+            border-right: 1px solid #2c313c;
+            padding: 50px 25px;
+            position: fixed;
+            height: 100vh;
+            background-color: rgba(11, 14, 20, 0.95);
+            z-index: 100;
+            box-sizing: border-box;
+            overflow-y: auto;
+        }
+
+        /* menu.js用のスタイル */
+        nav h2 {
+            font-size: 0.85rem;
+            color: #88aaff;
+            letter-spacing: 0.3em;
+            margin-bottom: 40px;
+            font-weight: normal;
+        }
+
+        .menu-group {
+            margin-bottom: 40px;
+        }
+
+        .menu-title {
+            display: block;
+            font-size: 0.75rem;
+            color: #555;
+            margin-bottom: 15px;
+            border-bottom: 1px solid #222;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        nav li {
+            margin-bottom: 12px;
+        }
+
+        nav a {
+            color: #999;
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: 0.4s;
+            display: block;
+        }
+
+        nav a:hover {
+            color: #fff;
+            padding-left: 8px;
+            text-shadow: 0 0 10px rgba(136, 170, 255, 0.5);
+        }
+
+        .current-page {
+            color: #ececec !important;
+            pointer-events: none;
+            border-left: 1px solid #88aaff;
+            padding-left: 5px;
+        }
+
+        /* メインコンテンツエリア */
+        main {
+            margin-left: 220px;
+            padding: 80px 60px;
+            flex-grow: 1;
+            max-width: 800px;
+            box-sizing: border-box;
+        }
+
+        h3 {
+            font-weight: normal;
+            font-size: 1.2rem;
+            color: #ececec;
+            margin-bottom: 50px;
+            padding-left: 10px;
+            border-left: 2px solid #88aaff;
+        }
+
+        /* カラムリスト（目次） */
+        .column-list {
+            margin-bottom: 100px;
+            border-top: 1px solid #1a1e26;
+        }
+
+        .column-link {
+            display: block;
+            padding: 20px 0;
+            border-bottom: 1px solid #1a1e26;
+            text-decoration: none;
+            color: #888;
+            transition: 0.3s;
+            font-size: 0.9rem;
+        }
+
+        .column-link:hover {
+            color: #88aaff;
+            background-color: rgba(255, 255, 255, 0.01);
+            padding-left: 10px;
+        }
+
+        .column-date {
+            font-size: 0.75rem;
+            color: #444;
+            margin-right: 20px;
+            font-family: sans-serif;
+        }
+
+        /* 記事本文 */
+        .column-content {
+            margin-top: 120px;
+        }
+
+        .column-title {
+            font-size: 1.15rem;
+            color: #ececec;
+            margin-bottom: 50px;
+            font-weight: normal;
+            letter-spacing: 0.2em;
+            border-bottom: 1px dotted #2c313c;
+            padding-bottom: 10px;
+            display: inline-block;
+        }
+
+        .column-body {
+            font-size: 0.95rem;
+            color: #b0b0b0;
+            text-align: justify;
+            white-space: pre-wrap;
+            line-height: 2.6;
+            letter-spacing: 0.08em;
+            opacity: 0.9;
+            padding: 0 10px;
+        }
+
+        /* 読了感向上のための段落間余白 */
+        .column-body p {
+            margin-bottom: 1.5em;
+        }
+
+        .column-footer {
+            margin-top: 100px;
+            padding-top: 20px;
+            border-top: 1px solid #1a1e26;
+            text-align: right;
+        }
+
+        .back-link {
+            font-size: 0.8rem;
+            color: #555;
+            text-decoration: none;
+        }
+
+        .back-link:hover {
+            color: #88aaff;
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav></nav>
+
+    <main>
+        <h3>Column - ② 隔絶された日常 -</h3>
+
+        <div class="column-list">
+            <a href="#c2-1" class="column-link">
+                <span class="column-date">#03</span>
+                圧迫した世界へ
+            </a>
+            <a href="#c2-2" class="column-link">
+                <span class="column-date">#04</span>
+                溶けていく思考
+            </a>
+        </div>
+
+        <article id="2-1" class="column-content">
+            <h4 class="column-title">#03 圧迫した世界へ</h4>
+            <div class="column-body">新型コロナウイルス。
+突如として始まった感染症対策を優先とした生活。
+今すぐ仕事を決めないと本当に貯金が消える寸前だった。
+もうどこでもいい、収入さえあればなんでもいい。
+
+縋るつもりで就労支援A型の所へ行った。
+珍しくIT関係の所であった。データ入力がメインで最低賃金ではあるがギリギリは生きていける。
+面接と言っても会社の面接ではなく、顔合わせのような感じで通った。
+
+ようやく収入ができたとは思ったが、それも打ち砕かれた。
+就労支援A型ではあるが賃貸アパートの大部屋を借りている所に大勢の人が詰め込まれたのである。
+
+コロナ禍で外出を控えるほど世界が狭くなったと同時に自分の生活圏も閉ざされた感じがした。
+初めて人が密集している所が苦手と知った。
+そこでまたBのODも始まった。手放せなくなっていた。
+
+就労支援A型が一時閉鎖になりリモートになったのが転機だった。
+助かったと思った。
+お家に居れば何でも済む、すべてがネットになった生活が始まった。
+もう飲まなくて済んだのだった。
+
+就労支援A型には結果として半年ほど居た。
+事業所に数か月、リモート期間で数か月。
+その間に就労支援A型の斡旋でネット経由で障害者雇用をしている会社へ就職した。
+
+本社は神奈川県にある会社。
+沖縄にデータ入力する現物を送ってもらい、就労支援A型を行っている会社のリモートで障害者雇用で働く人をサポートしている部署の事務所で入力する生活。
+手厚いサポートでようやく長期間働けるようになった。
+
+しかしくすぶっていたのだ。やはりコロナ禍で社会に圧迫感を感じていた頃。
+市販薬の購入制限がかかった。
+どうしよう、Bの購入がめんどうくさくなる。
+今まではそのまま買えた物が毎回確認される、嫌だった。
+
+そんな中たまたま情報が回ってきたがMだった。
+処方箋から市販薬になった薬。咳止め特化ではあったが単剤である。これだと思った。
+
+その頃"界隈"と呼ばれる物がよくニュースになっていた。
+そこでぱっと気づいてしまったのだ。長年BをODしていた経験が繋がってしまった。
+
+最初Bと同じ感覚で飲んで痛い目に会ったのを覚えている。
+比較にならないぐらいの吐き気であった。
+ふらつきも酷かった。
+しかし懲りずに何度もやっていた頃に、別世界へ行ける感覚を覚え楽しくなった。
+
+そこからMにのめりこむのは早かった。</div>
+
+            <div class="column-footer">
+                <a href="#" class="back-link">top ▲</a>
+            </div>
+        </article>
+
+        <article id="2-2" class="column-content">
+            <h4 class="column-title">#04 溶けていく思考</h4>
+            <div class="column-body">M。
+最初はBと同じ感覚で飲んだのが失敗であった。
+
+ネットで流れてくる情報で感覚を掴み、自分の適量をこれだと思って飲む。
+同じ量でも毎回出る症状が異なった。
+
+だからこそガチャ感覚で楽しんでいたのかもしれない。
+だんだんと日数が狭まり、量も増えた頃だった。
+
+支障が出てきたのである。
+乖離が酷く出て覚えてない夜が増えてきたのだ。
+それでも会社に行けたのは効きの速さと抜ける速さだった。
+自宅から乗れるジェットコースターと言っていい。
+
+あれよあれよと言う間にはまっていった。
+
+そして本格的に飲み始めて半年ほど。
+追い焚きをしたのだ。
+1日目の夜、2日目の夜、3日目の朝、に。
+喉が渇いたから水を飲むように、離脱から来る体調不良を埋めたくて3連休に飲んだ。
+理由は直近だと事務所が突如新居へと移ったのである。
+（まあ他にもいろいろあったのだが・・・）
+
+そこからがまた別世界だった。
+
+                <div class="column-footer">
+                    <a href="#" class="back-link">top ▲</a>
+                </div>
+        </article>
+    </main>
+
+    <script src="menu.js"></script>
+</body>
+
+</html>

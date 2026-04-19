@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="noindex">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Column ④- AM 4:00の境界線</title>
+    <style>
+      /* スムーズスクロールとスクロールバーの固定設定 */
+        html {
+            scroll-behavior: smooth;
+            overflow-y: scroll; /* 常にスクロール領域を確保 */
+            scrollbar-gutter: stable; /* バーが出てもコンテンツを動かさない */
+        }
+
+        /* スクロールバー自体のデザイン（浮いて見えないように闇に馴染ませる） */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0b0e14; /* サイトの背景色と同じ */
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #2c313c; /* 境界線に近い色 */
+            border-radius: 10px;
+            border: 2px solid #0b0e14; /* 背景色で隙間を作って細く見せる */
+        }
+        
+        /* 全体の設定：静かな夜の空気感 */
+        body { 
+            background-color: #0b0e14; 
+            color: #d1d1d1; 
+            font-family: "MS P明朝", "Yu Mincho", serif; 
+            margin: 0; 
+            display: flex; 
+            min-height: 100vh; 
+            letter-spacing: 0.1em; 
+            line-height: 1.8;
+        }
+
+        /* サイドナビゲーション（左固定） */
+        nav { 
+            width: 220px; 
+            border-right: 1px solid #2c313c; 
+            padding: 50px 25px; 
+            position: fixed; 
+            height: 100vh; 
+            background-color: rgba(11, 14, 20, 0.95); 
+            z-index: 100;
+            box-sizing: border-box;
+            overflow-y: auto;
+        }
+
+        /* menu.js用のスタイル */
+        nav h2 { font-size: 0.85rem; color: #88aaff; letter-spacing: 0.3em; margin-bottom: 40px; font-weight: normal; }
+        .menu-group { margin-bottom: 40px; }
+        .menu-title { display: block; font-size: 0.75rem; color: #555; margin-bottom: 15px; border-bottom: 1px solid #222; }
+        nav ul { list-style: none; padding: 0; margin: 0; }
+        nav li { margin-bottom: 12px; }
+        nav a { color: #999; text-decoration: none; font-size: 0.85rem; transition: 0.4s; display: block; }
+        nav a:hover { color: #fff; padding-left: 8px; text-shadow: 0 0 10px rgba(136, 170, 255, 0.5); }
+        .current-page { color: #ececec !important; pointer-events: none; border-left: 1px solid #88aaff; padding-left: 5px; }
+
+        /* メインコンテンツエリア */
+        main { 
+            margin-left: 220px; 
+            padding: 80px 60px; 
+            flex-grow: 1; 
+            max-width: 800px; 
+            box-sizing: border-box;
+        }
+
+        h3 { font-weight: normal; font-size: 1.2rem; color: #ececec; margin-bottom: 50px; padding-left: 10px; border-left: 2px solid #88aaff; }
+
+        /* カラムリスト（目次） */
+        .column-list { margin-bottom: 100px; border-top: 1px solid #1a1e26; }
+        .column-link { display: block; padding: 20px 0; border-bottom: 1px solid #1a1e26; text-decoration: none; color: #888; transition: 0.3s; font-size: 0.9rem; }
+        .column-link:hover { color: #88aaff; background-color: rgba(255,255,255,0.01); padding-left: 10px; }
+        .column-date { font-size: 0.75rem; color: #444; margin-right: 20px; font-family: sans-serif; }
+
+        /* 記事本文 */
+        .column-content { margin-top: 120px; }
+        .column-title { 
+            font-size: 1.15rem; 
+            color: #ececec; 
+            margin-bottom: 50px; 
+            font-weight: normal; 
+            letter-spacing: 0.2em; 
+            border-bottom: 1px dotted #2c313c; 
+            padding-bottom: 10px;
+            display: inline-block;
+        }
+        .column-body { 
+            font-size: 0.95rem; 
+            color: #b0b0b0; 
+            text-align: justify; 
+            white-space: pre-wrap; 
+            line-height: 2.6; 
+            letter-spacing: 0.08em; 
+            opacity: 0.9; 
+            padding: 0 10px; 
+        }
+
+        /* 読了感向上のための段落間余白 */
+        .column-body p { margin-bottom: 1.5em; }
+
+        .column-footer { margin-top: 100px; padding-top: 20px; border-top: 1px solid #1a1e26; text-align: right; }
+        .back-link { font-size: 0.8rem; color: #555; text-decoration: none; }
+        .back-link:hover { color: #88aaff; }
+
+    </style>
+</head>
+<body>
+
+    <nav></nav>
+
+    <main>
+        <h3>Column - ④ 白い部屋の境界線 -</h3>
+
+        <div class="column-list">
+            <a href="#c4-1" class="column-link">
+                <span class="column-date">#07</span>
+                welcome to the hospital
+            </a>
+            <a href="#c4-2" class="column-link">
+                <span class="column-date">#08</span>
+                保護と管理
+</a>
+                <a href="#c4-3" class="column-link">
+                <span class="column-date">#09</span>
+                出口へ
+            </a>
+        </div>
+
+        <article id="c4-1" class="column-content">
+            <h4 class="column-title">#07 welcome to the hospital</h4>
+            <div class="column-body">病院に着き早速ヒアリングが始まった。
+いろいろ話をし、決まったのが閉鎖の急性期病棟へ任意入院だった。期間は10日間。
+これは衝撃であった。勝手に三ヶ月のイメージがあったからである。
+薬の影響だったことや聞き取りでしっかりしていたからから、超短期間で薬を抜くだけで大丈夫と判断されたと思う。
+
+ともあれ協力者も一緒で手続きも早かった。
+うきうきしながら病棟へ進んでいった。
+
+しかしその気分も早速打ち砕かれたのであった。
+薄暗い廊下が続き、何重も閉ざされた扉を見て途端に不安になってきたのである。
+初めて聞く音が不安を増幅していった。
+
+初日は夜だったことで、個室で食事をとり眠るだけだった。
+しかしそこでまた現実感が消えて行ってしまった。
+どこかに収監されてしまったような・・・。
+
+翌日になると今度は天気を操れる神として存在していた。
+雨乞いのダンスを踊ったことで雨が降ったのを能力があるからと確信していた。
+
+そこから休憩をすると急にここがどこだか分からなくなってしまった。
+なぜ自分がここにいるのか、なぜ死んだはずの自分があの日の牢獄に囚われず次の日へと進めれたのか。
+無限ループの世界に閉じ込められ、なにかを達成しないと抜け出せないはずなのに。
+自分の存在がバグの塊ではないかと。
+そこから急激に自己嫌悪が始まり、舌を噛んで死んだつもりだった。
+
+気づくとベッドが動いており、「どこがいいですか？」と聞こえてきた。
+体が暑くなり焼かれるような感覚は灼熱地獄であり、芯から震える寒さは八寒地獄であった。
+結果的に冷たい風が吹く所に着き、八寒地獄に来てしまったのかと。
+
+ふと気づくとまた個室へと戻っていた。
+ああ無限ループの最初の部屋へと帰ってきてしまった、さっきの行動は失敗だったのかと。
+そこからいろいろ抜け出す方法を考えたが全てダメだった。
+そうしている頃に食事の時間になり、薬を飲むことになったが初めての薬を見た。
+いったい何のために？新しく出した？もしかして自分を暗殺するために？
+
+そこで決壊してしまった。
+この病院に殺されると暴れて全員グルになっているのだと、暴れてしまった。
+そこから冷たい部屋へと連行されてしまったのである。</div>
+            
+            <div class="column-footer">
+                <a href="#" class="back-link">top ▲</a>
+            </div>
+        </article>
+
+        <article id="c4-2" class="column-content">
+            <h4 class="column-title">#8 保護と管理</h4>
+            <div class="column-body">その部屋はとても寒々しい所だった。
+絶望し悔いてもあるのは檻と窓と厚い壁。
+コンクリートの冷たさも、無骨なトイレも、必要最低限のマットも。「お前はもう、人間ではない存在になったのだ」と。
+まるで、人間失格の烙印を押されたような心地だった。
+
+ぼんやりと時間だけが流れて行った。
+監視カメラで見られていることに気づき、自分の目には特別な力があり見つめた物は消せると思った。
+だからこそずっと睨んでいた。
+力が出なくても、何時間でも闘ってやると。
+
+ふと気づくと暗闇だった窓が徐々に明るくなっていることに気づいた。
+ただの暗闇だと思っていた。
+すると薄明りの中で鳥のさえずりが道案内をしているようだった。
+これが正解の道なんだと、声に惹かれてずっと外を見ていた。
+
+ふと気づくとここが部屋だったことに気が付く。
+酷い場所ではあった。
+しかし小さな窓口から出した希望は本物だった。
+簡素な朝食を食べ、正式に渡された薬を飲むことでようやく病棟への脱出に成功するのだった。
+</div>
+
+        <article id="c4-3" class="column-content">
+            <h4 class="column-title">#09 出口へ</h4>
+            <div class="column-body">脱出できたとは言え、閉鎖病棟の相部屋である。
+カーテンも無い徹底した保護環境下での暮らし。
+一人暮らしをしていた自分にとってはストレスであった。
+
+食事は暖かくて美味しいし、シャワーのみではあったが毎日お風呂にのんびり入れた。
+ビーズアクセサリー作りや映画視聴をしたり、エクササイズダンスを恥ずかしさもありつつ試しにやってみて失ってしまった感覚を取り戻していった。
+以外と快適かもとは思ったが、ここは急性期病棟。
+激しい方が多く、覚過敏もある自分には嵐の中を歩いているようなストレスが溜まる一方。
+早く出たいと思った。
+
+入院中、不眠が悪化し一切眠れなくなってしまった。
+頓服ですら効きづらく、ベッドの上でもんもんをしていた。
+そんな時は部屋を出て食堂でぼんやりとすごすのが好きだった。
+薄暗い部屋で日中と変わらないナースステーションだけが不夜城のようであった。
+そして不自由なベランダから見える町も好きだった。
+隔離されたこの空間と、眼下に見える小さな営み。
+ショッピングモールが冬の希望のクリスマスツリーのように輝いて見えた。
+
+土日を挟み治療が休みになった。
+その間、ひたすら日記を書いていた。
+ノートに必死に混線して荒れていた脳内を整理するように。
+
+そうして迎えた月曜日。
+入院してから満一週間の頃に、ここまで整理したノートを見せるとあっさりと退院の許可が下りた。
+任意だったのもあり完全に薬が抜けたのならもう治療する物はないとして。
+
+帰り道。あれは本当に体験したものだったのだろうか。
+浦島太郎が竜宮城を出た時もこのような感じだったのだろうか。
+</div>
+            
+            <div class="column-footer">
+                <a href="#" class="back-link">top ▲</a>
+            </div>
+        </article>
+    </main>
+
+    <script src="menu.js"></script>
+</body>
+</html>
