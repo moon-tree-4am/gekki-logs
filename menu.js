@@ -24,9 +24,6 @@ document.addEventListener("DOMContentLoaded", () => {
                     <ul class="sub-menu" style="list-style: none; padding-left: 15px; margin-top: 5px; display: ${isColumnPage ? 'block' : 'none'};">
                         <li><a href="column_01.html">① 黎明と混迷</a></li>
                         <li><a href="column_02.html">② 隔絶された日常</a></li>
-                        <li><a href="column_03.html">③ 自己の消失</a></li>
-                        <li><a href="column_04.html">④ 白い部屋の境界線 </a></li>
-                        <li><a href="column_05.html">⑤ 2026、青い夜明け</a></li>
                     </ul>
                 </li>
                 </ul>
