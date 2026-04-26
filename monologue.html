@@ -1,27 +1,40 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Links - AM 4:00の境界線</title>
+    <title>Monologue - AM 4:00の境界線</title>
     <style>
         /* --- スクロールバー設定 --- */
         html {
             scroll-behavior: smooth;
-            overflow-y: scroll; /* 常にスクロール領域を確保 */
-            scrollbar-gutter: stable; /* バーが出てもガタつかない */
+            overflow-y: scroll;
+            /* 常にスクロール領域を確保 */
+            scrollbar-gutter: stable;
+            /* バーが出てもガタつかない */
         }
 
         /* バー自体のデザインを闇に馴染ませる */
-        ::-webkit-scrollbar { width: 10px; }
-        ::-webkit-scrollbar-track { background: #0b0e14; }
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #0b0e14;
+        }
+
         ::-webkit-scrollbar-thumb {
             background: #2c313c;
             border-radius: 10px;
             border: 2px solid #0b0e14;
         }
 
-        /* ベース設定 */
+        /* --- 基本デザイン --- */
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             background-color: #0b0e14;
             color: #d1d1d1;
@@ -32,7 +45,7 @@
             letter-spacing: 0.1em;
         }
 
-        /* サイドナビ（PC固定） */
+        /* --- サイドナビ（PC固定） --- */
         nav {
             width: 220px;
             border-right: 1px solid #2c313c;
@@ -45,156 +58,442 @@
             overflow-y: auto;
         }
 
-        /* menu.js用のスタイル */
-        nav h2 { font-size: 0.85rem; color: #88aaff; letter-spacing: 0.3em; margin-bottom: 40px; font-weight: normal; }
-        .menu-group { margin-bottom: 40px; }
-        .menu-title { display: block; font-size: 0.75rem; color: #555; margin-bottom: 15px; border-bottom: 1px solid #222; }
-        nav ul { list-style: none; padding: 0; margin: 0; }
-        nav li { margin-bottom: 12px; }
-        nav a { color: #999; text-decoration: none; font-size: 0.85rem; transition: 0.4s; display: block; }
-        nav a:hover { color: #fff; padding-left: 8px; text-shadow: 0 0 10px rgba(136, 170, 255, 0.5); }
-        .current-page { color: #ececec !important; pointer-events: none; border-left: 1px solid #88aaff; padding-left: 5px; }
+        /* JS挿入メニュー用スタイル */
+        nav h2 {
+            font-size: 0.85rem;
+            color: #88aaff;
+            letter-spacing: 0.3em;
+            margin-bottom: 40px;
+            font-weight: normal;
+        }
 
-        /* メインエリア */
+        .menu-group {
+            margin-bottom: 40px;
+        }
+
+        .menu-title {
+            display: block;
+            font-size: 0.75rem;
+            color: #555;
+            margin-bottom: 15px;
+            border-bottom: 1px solid #222;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        nav li {
+            margin-bottom: 12px;
+        }
+
+        nav a {
+            color: #999;
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: 0.4s;
+            display: block;
+        }
+
+        nav a:hover {
+            color: #fff;
+            padding-left: 8px;
+            text-shadow: 0 0 10px rgba(136, 170, 255, 0.5);
+        }
+
+        .current-page {
+            color: #ececec !important;
+            pointer-events: none;
+            border-left: 1px solid #88aaff;
+            padding-left: 5px;
+        }
+
+        /* --- メインエリア --- */
         main {
             margin-left: 220px;
-            padding: 80px 60px 150px;
+            padding: 80px 60px;
             flex-grow: 1;
             max-width: 750px;
             box-sizing: border-box;
+
+            /* --- ふわっと出てくるアニメーション --- */
+            animation: fadeIn 1.5s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(15px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         h3 {
             font-weight: normal;
             font-size: 1.2rem;
             color: #ececec;
-            margin-bottom: 40px;
+            margin-bottom: 50px;
             padding-left: 10px;
             border-left: 2px solid #88aaff;
         }
 
-        .page-note {
-            font-size: 0.8rem;
-            color: #666;
-            margin-bottom: 60px;
-            line-height: 1.8;
-            padding: 20px;
-            background-color: rgba(255,255,255,0.02);
-            border-left: 1px solid #1a2a40;
+        /* 日記のエントリ */
+        .diary-entry {
+            margin-bottom: 75px;
+            line-height: 2.0;
         }
 
-        .section-tag {
-            margin: 80px 0 30px;
-            font-size: 0.75rem;
+        .diary-year {
+            font-size: 0.6rem;
+            color: #445577;
+            letter-spacing: 0.5em;
+            margin-bottom: 4px;
+            display: block;
+        }
+
+        .diary-date {
+            color: #99bbff;
+            font-size: 0.9rem;
+            display: block;
+            margin-bottom: 15px;
             letter-spacing: 0.3em;
-            border-bottom: 1px solid #222;
-            padding-bottom: 10px;
-        }
-        .tag-downer { color: #5577aa; }
-        .tag-upper { color: #aa5555; }
-        .tag-impulse { color: #dd8844; }
-        .tag-library { color: #667788; }
-        .tag-ent { color: #aa8855; }
-
-        .column-list { display: flex; flex-direction: column; gap: 25px; }
-        .column-link { text-decoration: none; color: #d1d1d1; display: block; transition: 0.4s; }
-        .column-date { font-size: 0.65rem; color: #444; display: block; margin-bottom: 5px; }
-        .column-title { font-size: 0.95rem; border-left: 1px solid #222; padding-left: 15px; display: block; }
-        
-        .column-link:hover .column-title { 
-            border-left: 1px solid #88aaff; 
-            color: #fff; 
-            padding-left: 20px; 
         }
 
+        .diary-text {
+            font-size: 0.95rem;
+            color: #c0c0c0;
+            letter-spacing: 0.15em;
+        }
+
+        .diary-text p {
+            margin: 0 0 1.5em 0;
+        }
+
+        .column-footer {
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 1px solid #1a1e26;
+            text-align: right;
+        }
+
+        .back-link {
+            font-size: 0.8rem;
+            color: #555;
+            text-decoration: none;
+        }
+
+        .back-link:hover {
+            color: #88aaff;
+        }
     </style>
 </head>
+
 <body>
 
     <nav></nav>
 
     <main>
-        <h3>Links / 共鳴</h3>
-        
-        <p class="page-note">
-            深夜4時、境界線の上で耳に馴染み、血肉となった断片たち。
-        </p>
+        <h3>Monologue - 独白 -</h3>
 
-        <div class="section-tag tag-downer">Downer - 沈殿する意識</div>
-        <div class="column-list">
-            <a href="https://www.youtube.com/watch?v=ArqagB9P1Qs" class="column-link" target="_blank">
-                <span class="column-date">Breathing / Music</span>
-                <span class="column-title">息をするだけ / MIMI feat.可不</span>
-            </a>
-            <a href="https://www.youtube.com/watch?v=5GUaMOpfmr8" class="column-link" target="_blank">
-                <span class="column-date">Survival / Music</span>
-                <span class="column-title">ただ声一つ / ロクデナシ</span>
-            </a>
-        </div>
-
-        <div class="section-tag tag-upper">Upper - 加速する思考</div>
-        <div class="column-list">
-            <a href="https://www.youtube.com/watch?v=0HYm60Mjm0k" class="column-link" target="_blank">
-                <span class="column-date">Antithesis / Music</span>
-                <span class="column-title">命に嫌われている。 / カンザキイオリ</span>
-            </a>
-            <a href="https://www.youtube.com/watch?v=Soy4jGPHr3g" class="column-link" target="_blank">
-                <span class="column-date">Geometry / Music</span>
-                <span class="column-title">テトリス / 柊マグネタイト feat.重音テト</span>
-            </a>
-            <a href="https://www.youtube.com/watch?v=LLjfal8jCYI" class="column-link" target="_blank">
-                <span class="column-date">Logic / Music</span>
-                <span class="column-title">オーバーライド / 吉田夜世 feat.重音テト</span>
-            </a>
-        </div>
-
-        <div class="section-tag tag-impulse">Impulse - 衝動</div>
-        <div class="column-list">
-            <a href="https://www.youtube.com/watch?v=8XpiTsxBIvg" class="column-link" target="_blank">
-                <span class="column-date">Instinct / Music</span>
-                <span class="column-title">The Beast. / スペクタクルP feat.可不</span>
-            </a>
-            <a href="https://www.youtube.com/watch?v=x8VYWazR5mE" class="column-link" target="_blank">
-                <span class="column-date">Sprint / Music</span>
-                <span class="column-title">夜に駆ける / YOASOBI</span>
-            </a>
-        </div>
-
-        <div class="section-tag tag-library">Library - 思考の浸食</div>
-        <div class="column-list">
-            <div class="column-link">
-                <span class="column-date">Philosophy / Text</span>
-                <span class="column-title">世界一やさしい依存症入門 / 松本俊彦</span>
-            </div>
-            <div class="column-link">
-                <span class="column-date">Survival / Essay</span>
-                <span class="column-title">持たない幸福論 / pha</span>
-            </div>
-            <div class="column-link">
-                <span class="column-date">Monologue / Diary</span>
-                <span class="column-title">卒業式まで死にません / 南条あや</span>
+        <div class="diary-entry">
+            <span class="diary-year">2026</span>
+            <span class="diary-date">04.26 <span style="font-size: 0.7rem; opacity: 0.6;">（日）</span></span>
+            <div class="diary-text">
+                <p>今日は買い出し以外はお家に居てのんびりすごす。<br>
+                    昨日たくさん遊んだ疲れも来ていて、休憩の1日。</p>
+                <p>午前中まで大雨だった。<br>
+                    雨が降っている方が好き。外の音を雨で包んでくれるから。<br>
+                    オフの日にサンダルを履いて散歩するのもいい。<br>
+                    傘に跳ねる雨音も好き。<br>
+                    そんな中見つけたのはスタージャスミン。<br>
+                    星形の白い小さなが可愛く、良い香りが風に乗ってくると誘われてしまう。<br>
+                    垂れている姿は流れ星のように綺麗だった。</p>
             </div>
         </div>
 
-        <div class="section-tag tag-ent">Entertainment - 物語の遊戯</div>
-        <div class="column-list">
-            <div class="column-link">
-                <span class="column-date">Comic / Alchemy</span>
-                <span class="column-title">鋼の錬金術師 / 荒川弘</span>
-            </div>
-            <div class="column-link">
-                <span class="column-date">Comic / Evolution</span>
-                <span class="column-title">魔人探偵脳噛ネウロ / 松井優征</span>
-            </div>
-            <div class="column-link">
-                <span class="column-date">Animation / Hell</span>
-                <span class="column-title">Hazbin Hotel / VivziePop</span>
+        <div class="diary-entry">
+            <span class="diary-date">04.25 <span style="font-size: 0.7rem; opacity: 0.6;">（土）</span></span>
+            <div class="diary-text">
+                <p>当事者会のイベントに参加。<br>
+                    ドライブをしながら途中でA&Wに寄り東南植物楽園へ。</p>
+                <p>A&Wのハンバーガーはとても美味しい。<br>
+                    パティのお肉のうまみと生たまねぎのしゃきしゃき感の組み合わせが最高。<br>
+                    ピクルス多めなのも嬉しい。<br>
+                    オレンジジュースも濃いオレンジ味。その美味しさにジョッキで乾杯。</p>
+                <p>薄暗くなってきた頃に東南植物に到着。<br>
+                    イルミネーションを見ながらみんなで盛り上がりながらお散歩をしていた。<br>
+                    雨が降っているのもあってとても雰囲気が良い。<br>
+                    遠くから見ると全体が見えて幻想的な空間に来たんだなって。<br>
+                    しかし近くまで寄れるせいで、配線が丸見えで汚く見えてしまった。<br>
+                    すると現実に戻されて急にカップル向けの所に来てしまったと急に落ち込むように。<br>
+                    今回はみんなでワイワイしていたからいいけれど、ひとりだったらもう夜には来ません・・・。</p>
             </div>
         </div>
 
+        <div class="diary-entry">
+            <span class="diary-date">04.24 <span style="font-size: 0.7rem; opacity: 0.6;">（金）</span></span>
+            <div class="diary-text">
+                <p>仕事帰りに片頭痛の病院へ。<br>
+                    今月は毎日のように痛くて困っていたのを伝えると痛み止め薬が多めになった。<br>
+                    予防薬と月に1回の注射でもなかなか良くならないのが悩みどころ。<br>
+                    レイボーも50mgで眠気が酷くて飲むと強烈な眠気が来てしまうから、日中に使うのを躊躇してしまう。<br>
+                    最新の治療をしているから金銭面の負担も大きくて、それだけでまた頭が痛くなりそう・・・。</p>
+            </div>
+        </div>
+
+        <div class="diary-entry">
+            <span class="diary-date">04.23 <span style="font-size: 0.7rem; opacity: 0.6;">（木）</span></span>
+            <div class="diary-text">
+                <p>久しぶりに『Splatoon3』で遊んでる。<br>
+                    DLCのサイドオーダーが好きで長時間遊んでしまう。<br>
+                    ハチのパレットで最小ハッキングでクリアしてもらえる虹バッジまで入手済み。<br>
+                    残りはカラーチップを最大まで入手してクリアして貰える各バッジだけ。<br>
+                    けれどそういうのは関係なく、その時の組み合わせで最強のブキを作るローグライク要素が好きなのかな。</p>
+                <p>2でも3でもサーモンランばかりやっている。<br>
+                    3は特にメインコンテンツクラスになった影響で熱中するように。<br>
+                    無印からずっとやっているせいで、環境が変わるごとに適応できなくなってしまった。<br>
+                    好きなシリーズなんだけど少し寂しさもあり・・・。</p>
+                <p>唐突に発売日が発表された『Splatoon Raiders』が楽しみすぎる。<br>
+                    今年の7月23日は早い。<br>
+                    実はまだSwitch2買ってないんですよね。<br>
+                    流石に買うのを躊躇する本体価格の影響でポケモン新作までお預けにしていた。
+                    去年は大金を使う行事やイベントが連続であった影響で、貯金が少なめな現状が痛いところ。<br>
+                    ええい、頑張って貯金してswitch2買うぞ～！</p>
+            </div>
+        </div>
+
+        <div class="diary-entry">
+            <span class="diary-date">04.22 <span style="font-size: 0.7rem; opacity: 0.6;">（水）</span></span>
+            <div class="diary-text">
+                <p>数日間いろいろあった予定が済んでひと段落。<br>
+                    疲労で夜はダウンしていたけれど今週は楽になりそう。<br>
+                    訪問看護の人から「それを忙しいって言うんだよ。」と指摘されていまいち分からなくなってくる。<br>
+                    けれどそれで平日の夜にもう無理ってなるからもっと緩めていいのかな。</p>
+                <p>そういえば今月に入ってODをしていない。<br>
+                    したいと思ったのは何度もある。<br>
+                    けれど飲んだ所で気分は晴れないし強制リセットもできない。<br>
+                    不安が強すぎてバッドに入ってしまう。<br>
+                    少量飲んだどころでいまいち効果が分からずもっと飲みたくなるのが罠。<br>
+                    このまま薄れていかないかな。</p>
+                <p>あちこちで鯉のぼりが飾られてもうそんな季節になっていたことに気づく。<br>
+                    良い天気の日にゆらゆらなびいてる姿を見ると、本当に泳いでるみたいで見ていて気持ちがいい。<br>
+                    県内だとよく見ると鯉じゃなくて鯨になっている所も。</p>
+                <p>今の時期が一番散歩日和で気持ちいい。<br>
+                    GWが明けると梅雨入りするし、梅雨明けしたら今度は夏がやって来る。<br>
+                    貴重な涼しい風に吹かれに行きたい。</p>
+            </div>
+        </div>
+
+        <div class="diary-entry">
+            <span class="diary-date">04.19 <span style="font-size: 0.7rem; opacity: 0.6;">（日）</span></span>
+            <div class="diary-text">
+                <p>Sound Horizonの『Elysion 〜楽園幻想物語組曲〜』が4月13日に21年前の作品になったらしい。<br>
+                    時代の流れは早い。<br>
+                    学生の頃にドはまりして『少年は剣を…』『Elysion －楽園への前奏曲－』『Roman』あたりを聞きまくってました。<br>
+                    『Moira』が発売されて考察が難易度が上がってから離脱していまして・・・。<br>
+                    今からだと何から聞いていいのか・・・。</p>
+                <p>久しぶりにCDを開いたら『Elysion 〜楽園幻想物語組曲〜』と『Roman』がカビていてショック。<br>
+                    カビってこんなのにも生えるんですね・・・。<br>
+                    そいや実家のビデオテープもカビが廃棄する原因の最大理由になっていたなあ。<br>
+                    CDを持っていれば永久に聞ける安心感の崩壊。<br>
+                    今はサブスクで聞ける時代だけど、サンホラはCDで流して歌詞カードを見るのが乙な味。<br>
+                    アナログなギミックが深みを増す音楽なんですよね。<br>
+                    どうしよ・・・どうにかできるんでしょうか・・・。</p>
+            </div>
+        </div>
+
+        <div class="diary-entry">
+            <span class="diary-date">04.18 <span style="font-size: 0.7rem; opacity: 0.6;">（土）</span></span>
+            <div class="diary-text">
+                <p>平日の後半に用事ラッシュで疲れ果てて、昨日の夜までずっと横になってました。<br>
+                    部屋の照明を薄暗くして、ひたすら音楽を聴くだけ。<br>
+                    疲れてる時はこのぐらい情報量を落とさないと苦しくなってしまう・・・。</p>
+                <p>点滴って謎の魅力ありますよね。<br>
+                    数ヶ月前に胃腸風邪になって、症状が酷くて処置室で点滴受けたんです。<br>
+                    点滴のパックから管を通って体内に液体が入ってくるのは不思議。<br>
+                    血管が細すぎてその時も手の甲に入れていて、すごく違和感はあったんですけど。<br>
+                    病院のベッドで数時間受けてた時にうっとりしていました。<br>
+                    カーテンレールとか病院の天井も見ながら、良い眺めだなあって。</p>
+                <p>本を読み切ってもまた1冊買って読み始めてしまう。<br>
+                    買うのならできたら新刊で欲しいせいで、書籍代も馬鹿にならない。<br>
+                    図書館も利用しているけれど全ての本を入れてるわけではないし、新刊も実際に入れるまでには時間がかかるし。<br>
+                    誰か良い案を教えてください・・・。</p>
+            </div>
+        </div>
+
+        <div class="diary-entry">
+            <span class="diary-date">04.15 <span style="font-size: 0.7rem; opacity: 0.6;">（水）</span></span>
+            <div class="diary-text">
+                <p>もう週の半ば。まだまだ多忙です・・・。<br>
+                    週末にかけて仕事以外にも病院の予定が数ヶ所あったり、ヘルパー利用のモニタリングがあったり。<br>
+                    早く全部終わらないかな。</p>
+                <p>カツオの刺身をもらったから、切ってきゅうりもセットで食す。<br>
+                    釣った直後の美味しさが当たり前だった環境で生きてきたから、どうしても臭いが気になってしまう・・・。<br>
+                    そういう時は味噌とマヨネーズを混ぜたソースが合う。<br>
+                    きゅうりにも合うからいくらでも食べれてしまう魔のセット。</p>
+                <p>沖縄はもう初夏の気配。<br>
+                    気持ちいい風が吹いているから、外気欲ができるサウナに行きたい季節になったなあと。<br>しかし数ヶ月前にボディピアスを付けたばかりでまだ安定していない。<br>
+                    気軽に外すこともできないし、付けたまま入ると低温やけどのリスクがあるし。<br>
+                    今年は無理かなあ～。</p>
+            </div>
+        </div>
+
+        <div class="diary-entry">
+            <span class="diary-date">04.13 <span style="font-size: 0.7rem; opacity: 0.6;">（月）</span></span>
+            <div class="diary-text">
+                <p>今週も始まりお仕事である。<br>
+                    今日から今月までは勤務時間がやや少なくから、楽にはなるはず。<br>
+                    NAはお休み。<br>リーダーも忙しいらしい・・・。<br>
+                    自分はあまり影響無いけれど、しばらくは年度も始まったばかりで意外と影響があるんだろうなあ。</p>
+                <p>コラム用に昔話をちょいちょい書き出し。<br>
+                    日記ほど気楽に書けなかったり、表現替えたり。難しいなあ。</p>
+            </div>
+        </div>
+
+        <div class="diary-entry">
+            <span class="diary-date">04.12 <span style="font-size: 0.7rem; opacity: 0.6;">（日）</span></span>
+            <div class="diary-text">
+                <p>日中は両親と共に外出。<br>
+                    普段は買い物をしてすぐ帰るパターンだったから、散歩であちこち見るのが楽しかった模様。<br>
+                    久しぶりにお気に入りのカレー屋さんに行くと、外装から内装の配置まで変わっていて一瞬素通りしてしまった。<br>
+                    インドテイストからかなり日本に魔改造されてきたなあ、と。<br>
+                    美味しすぎて、カレーとナンとターメリックライスで何杯もお替りできそうなのが恐ろしいところ。</p>
+                <p>両親が帰った所で全てが抜けて、今日もぐったり。<br>
+                    昨日はピンポイントで眠れなかった影響もあって、2日間の疲れが来ている感じがする。<br>
+                    またODしようと思ったけれど夕方になっていて、これから飲んでも明日に持ち越しそうな気がしたので辞めることに。<br>
+                    こうやって鎮火してしったらいいのにな・・・。<br>
+                    とはいえ疲れやすい、ストレス受けやすい、発散が苦手、とかいろいろあって今回は大丈夫だった、けれど次回に爆発させてしまうのが弱い所。</p>
+            </div>
+        </div>
+
+        <div class="diary-entry">
+            <span class="diary-date">04.11 <span style="font-size: 0.7rem; opacity: 0.6;">（土）</span></span>
+            <div class="diary-text">
+                <p>午前中は内科の病院。<br>
+                    肝臓の値が下がって良くなってる模様。<br>
+                    モンエナ卒業が地味に聞いてるのかも・・・。<br>
+                    甘い物を控えることや油物を避ける場合、一番カットしやすいのはジュースや間食を潔く辞めるのが良い。<br>
+                    定期的に採血をする所に通い始めて、個人的には嬉しい。<br>
+                    己の体から血が管を通って出ていくのにうっとりするタイプ。<br>
+                    献血をしたいけれど、血管が細すぎて献血用の太い針が通らないらしい。<br>
+                    採血時も毎回手の甲から細い針を使用しているみたいで、もう献血は無理なんだろうなあと悲しい・・・。<br>
+                    かつて自分も見様見真似で自傷の一環として瀉血を試した時があったが、医療従事者ですら苦戦する細さに素人が刺すのは無理。<br>
+                    どこ探しても無理でとりあえず針を刺して痛みと青あざを作って終わりだった。<br>
+                    今考えるとそこまでそこまで固執しなくてもいいとは思うが、当時はどうしてもやりたかった記憶。</p>
+                <p>病院帰りに映画館にて『私がビーバーになる時』を視聴。<br>
+                    主人公のどこでも荒らしていく行動が気になるものの、おばあちゃんとの思い出を守るために工事を止めるのならあのぐらいアグレッシブじゃないと足りない。
+                    <br>めちゃくちゃになったけど最後はまとまってハッピーエンドになるのは良いですねえ。<br>
+                    動物視点の動物と人間視点の動物の見た目が変わるのは面白ポイント。<br>
+                    あと日本語吹き替え版だと虫の王は幼虫時代は大谷育江さんで、成虫になってからは平野潤也さんらしい？
+                    <br>ハズビン・ホテルのエンジェル・ダストが好きなので、これはとても大収穫。<br>
+                    ところでズートピア2でもビーバーが重要キャラになっていたり、ビーバーブームが来ているんでしょうか？
+                </p>
+                <p>疲れがたたって帰ってからはずっと寝たり、音楽を聴いたりだらだら。<br>
+                    「もうだめ無理・・・ODしたい・・・。」とはずっと思っていたもの、両親と夕方から合流して外食予定が入っていたのでここでひと耐え。<br>
+                    両親と久しぶりに外食・・・苦手だ。<br>
+                    外がガヤガヤしていてうるさいと目の前の会話すら聞こえなかったり、一緒に食べるのが苦手になってしまったり・・・。<br>
+                    寝ようとしたら睡眠薬を飲んだにも関わらず目が冴えてしまい、うとうともできず発狂していた。<br>
+                    一人だと諦めて起きる選択肢もできるものの、両親が寝ている為何もできず。<br>
+                    余っていた睡眠薬をもう1回飲むことでなんとか寝ることに・・・。</p>
+            </div>
+        </div>
+
+        <div class="diary-entry">
+            <span class="diary-date">04.10 <span style="font-size: 0.7rem; opacity: 0.6;">（金）</span></span>
+            <div class="diary-text">
+                <p>ようやく平日が終わり明日からお休みに入ることに安心する。<br>
+                    今週はやや仕事の時間が長かったり、自宅にて月一回の面談があったり、忙しかった。<br>
+                    とは言え明日の午前中は病院の予定があるし、両親が自宅に一泊のが嫌である。<br>
+                    もっと稼げれたらよかったのにと思ってしまう。<br>
+                    障害者雇用で働いてるけれど、所詮はパートの存在。<br>
+                    やることはデータ入力のみだし、無期限雇用だって契約更新が無いだけでそれ以外は何も変わらない。<br>
+                    副業も禁止だから、収入が欲しいのなら転職ぐらいしかない。<br>
+                    しかしここでASDが発動してしまうのだ。<br>
+                    変化を嫌い、同じ環境の方を好んでしまう。<br>
+                    今だって勤務時間を短くしてもらって、サポートを全て受けているからこそ4.5年間も働けたのがある。</p>
+                <p>慢性的に体調が悪いのがズルズルと続いてる。<br>
+                    これ以上長時間働くことに体が耐えきれない。<br>
+                    片頭痛、アレルギー性の喘息と鼻炎、PCOS。<br>
+                    それに肝臓も悪い。<br>
+                    「食生活と運動で良くなるから」と病院で言われても、じゃあどういう食生活をすれば？運動もどのぐらい？<br>
+                    日常生活ですら疲れ切った体に健康的な食事を作ったり、追加で運動をするのはどこにねじ込めばいいのだろうか。</p>
+                <p>精神的な弱さも無視が出来ない。<br>
+                    寛解したとは言え、元双極性障害2型。<br>
+                    ストレスを溜めやすい上に発散する方法が弱く、市販薬をたくさん飲んでしまう。<br>
+                    幼い頃からある人間不信が尾を引き、今まで本格的なコミュニケーションを避け続けていた。
+                    <br>あまりにも自己肯定感も無く、最初から何をしても無駄だと思ってしまう。<br>
+                    どうしたら良くなるんだろう、向上心はあるのにそれ以外は何もない。<br>
+                    現実を見すぎているのだろうか。<br>
+                    いや、今まで嫌で直視すらしなかったツケが今回りまわって帰ってきたとしか・・・。<br>
+                    5月から市販薬の購入のハードルが上がり、辛いと思った時にドラッグストアへ走り買うことだって厳しくなる。<br>
+                    もう人生を諦めるしかないのかな・・・。
+                </p>
+            </div>
+        </div>
+
+        <div class="diary-entry">
+            <span class="diary-date">04.08 <span style="font-size: 0.7rem; opacity: 0.6;">（水）</span></span>
+            <div class="diary-text">
+                <p>今日は仕事から帰ってきてだらだら動画見てた。<br>
+                    疲労が溜まりすぎる・・・。<br>
+                    久しぶりにアニメを見たくなったけれど、何を見ていいのか分からなくてふらふら。<br>
+                    読書とかゲームは集中できるから落ち着きがないとかではないんだけれど。<br>
+                    目線や手元が暇でじっとできない。</p>
+            </div>
+        </div>
+
+        <div class="diary-entry">
+            <span class="diary-date">04.07 <span style="font-size: 0.7rem; opacity: 0.6;">（火）</span></span>
+            <div class="diary-text">
+                <p>ここ数日、曇っているか雨が降っているかのどちらかの天気が続く。<br>
+                    4月に入って春だなあと思つつ、高温多湿シーズンに入ってきたから半袖を出してさっそく着ている。<br>
+                    今月内には冬物をしまいたいなあ。<br>
+                    日中は仕事をして、夕方から訪問看護。<br>
+                    メンタル特化の所だから、週1で30分間来てくれるだけで助かっている。<br>
+                    連日サイトの編集をがっつりしていたから疲れが来ている。<br>
+                    まだまだ週の半ばまで来ていないのに、と憂鬱になる。<br>
+                    週末には田舎に住んでいる両親が用事で出てきて、家に一泊二日の予定らしい。<br>
+                    一人暮らしが長くて、家に誰かがいると疲れてしまうし、両親ですら気を使ってしまうから会いたくないなあ……。</p>
+            </div>
+        </div>
+
+        <div class="diary-entry">
+            <span class="diary-date">04.06 <span style="font-size: 0.7rem; opacity: 0.6;">（月）</span></span>
+            <div class="diary-text">
+                <p>先週集中的にサイトを作ったおかげで更新が楽。とは言えコンテンツが増えた場合はまだまだ悩み中。<br>
+                    今日から平日。<br>出勤があるとそれだけで嫌になってしまう。毎日休みだったらいいのにな、とか。<br>
+                    障害者雇用で満4年半が経ち無期限雇用が決まっているけれど、条件は同じ。<br>
+                    満了で契約が切られなくなったのは安心材料だけれどこれでよかったのかな・・・と。<br>
+                    出来たら安定した環境の方が良いが、毎日同じ風景が続くとそれはそれで自分はいったい何をしているんだろうと虚無感が出てしまう。<br>
+                    NAはお休み。<br>月曜日開催は自分とリーダーぐらいしか参加者がいなくて、会と言うよりただの雑談タイム。<br>そ
+                    のおかげで集団の前では黙ってしまう癖が出ずにいろいろ話せれるから助かっている。<br>
+                    金曜日開催の方にも顔を出したい。<br>
+                    会社帰りでへとへとになってそこから行動できないのと、月曜日開催と会場が違いバスではアクセス悪いのでなかなか行けてない。</p>
+            </div>
+        </div>
+
+        <div class="diary-entry">
+            <span class="diary-date">04.05 <span style="font-size: 0.7rem; opacity: 0.6;">（日）</span></span>
+            <div class="diary-text">
+                <p>サイト作成中。<br>知識がはるか昔の物で止まってるせいで悪戦苦闘してる・・・。
+                    <br>かつては個人サイト作成支援サイトで必死ににらみ合いっこしていたけれど、今回はエディタとAIを見てる。<br>
+                    まあ参考書として買った本も、いつか役に立つでしょう。
+                </p>
+            </div>
+        </div>
+
+        <div class="column-footer">
+            <a href="#" class="back-link">top ▲</a>
+        </div>
     </main>
 
     <script src="menu.js"></script>
-
 </body>
+
 </html>
