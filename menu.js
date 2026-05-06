@@ -1,10 +1,10 @@
-// menu.js
 document.addEventListener("DOMContentLoaded", () => {
-    // 現在のページ判定用のパスを取得
     const currentPath = window.location.pathname;
     
-    // URLに "column_" が含まれているか判定（コラムページかどうか）
+    // 判定用のフラグ
     const isColumnPage = currentPath.includes("column_");
+    // モノローグ本体、またはアーカイブ（diary_）が含まれる場合にメニューを開く
+    const isMonologuePage = currentPath.includes("monologue.html") || currentPath.includes("diary_");
 
     const navHTML = `
         <h2>AM 4:00の境界線</h2>
@@ -18,7 +18,12 @@ document.addEventListener("DOMContentLoaded", () => {
         <div class="menu-group">
             <span class="menu-title">Fragments</span>
             <ul>
-                <li><a href="monologue.html">Monologue (独白)</a></li>
+                <li>
+                    <a href="monologue.html">Monologue (独白)</a>
+                    <ul class="sub-menu" style="list-style: none; padding-left: 15px; margin-top: 5px; display: ${isMonologuePage ? 'block' : 'none'};">
+                        <li><a href="diary_202604.html">・2026.04</a></li>
+                    </ul>
+                </li>
                 <li>
                     <a href="column_01.html">Column (断片)</a>
                     <ul class="sub-menu" style="list-style: none; padding-left: 15px; margin-top: 5px; display: ${isColumnPage ? 'block' : 'none'};">
@@ -26,7 +31,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         <li><a href="column_02.html">② 隔絶された日常</a></li>
                     </ul>
                 </li>
-                </ul>
+            </ul>
         </div>
         <div class="menu-group">
             <span class="menu-title">Connection</span>
@@ -41,7 +46,6 @@ document.addEventListener("DOMContentLoaded", () => {
     if (navElement) {
         navElement.innerHTML = navHTML;
 
-        // 現在のページ判定（カレント表示の付与）
         const links = navElement.querySelectorAll("a");
         links.forEach(link => {
             const href = link.getAttribute("href");
