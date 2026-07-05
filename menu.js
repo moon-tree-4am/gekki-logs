@@ -23,6 +23,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     <ul class="sub-menu" style="list-style: none; padding-left: 15px; margin-top: 5px; display: ${isMonologuePage ? 'block' : 'none'};">
                         <li><a href="diary_202604.html">・2026.04</a></li>
                         <li><a href="diary_202605.html">・2026.05</a></li>
+                        <li><a href="diary_202606.html">・2026.06</a></li>
                     </ul>
                 </li>
                 <li>
